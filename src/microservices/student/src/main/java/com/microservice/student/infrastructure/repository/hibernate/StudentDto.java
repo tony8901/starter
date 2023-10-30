@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -25,7 +26,7 @@ public class StudentDto {
     private String email;
 
     @Column(name = "course_id")
-    private UUID courseId;
+    private List<UUID> courses;
 
     @Column(nullable = false)
     private String state;
@@ -37,11 +38,11 @@ public class StudentDto {
         this.id = student.id();
         this.name = student.name();
         this.email = student.email();
-        this.courseId = student.courseId();
+        this.courses = student.courses();
         this.state = student.state().name();
     }
 
     public Student toAggregate(){
-        return new Student(getId(), getName(), getEmail(), getCourseId(), StudentState.valueOf(getState()));
+        return new Student(getId(), getName(), getEmail(), getCourses(), StudentState.valueOf(getState()));
     }
 }

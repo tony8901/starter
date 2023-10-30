@@ -29,7 +29,7 @@ public class PostgresDBStudentCommandRepository implements IStudentCommandReposi
     public void delete(Student student) {
         Student toDelete = new Student(
                 student.id(), student.name(), student.email(),
-                student.courseId(), StudentState.INACTIVE);
+                student.courses(), StudentState.INACTIVE);
         repository.save(new StudentDto(toDelete));
     }
 }
