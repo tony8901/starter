@@ -13,9 +13,12 @@ import com.microservice.student.application.query.findall.FindAllStudentsHandler
 import com.microservice.student.application.query.findall.FindAllStudentsResponse;
 import com.microservice.student.application.query.findallpaginated.FindAllPaginatedQuery;
 import com.microservice.student.application.query.findallpaginated.FindAllPaginatedHandler;
+import com.microservice.student.application.query.findallpaginatedfilter.FindAllPaginatedFilterHandler;
+import com.microservice.student.application.query.findallpaginatedfilter.FindAllPaginatedFilterQuery;
 import com.microservice.utils.core.PaginatedResponse;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,15 +32,16 @@ public class StudentController {
     private final UpdateStudentHandler updateHandler;
     private final DeleteStudentHandler deleteHandler;
     private final FindAllStudentsHandler findAllHandler;
-
     private final FindAllPaginatedHandler findAllPaginatedHandler;
+    private final FindAllPaginatedFilterHandler findAllPaginatedFilterHandler;
 
-    public StudentController(CreateStudentHandler createHandler, UpdateStudentHandler updateHandler, DeleteStudentHandler deleteHandler, FindAllStudentsHandler findAllHandler, FindAllPaginatedHandler findAllPaginatedHandler) {
+    public StudentController(CreateStudentHandler createHandler, UpdateStudentHandler updateHandler, DeleteStudentHandler deleteHandler, FindAllStudentsHandler findAllHandler, FindAllPaginatedHandler findAllPaginatedHandler, FindAllPaginatedFilterHandler findAllPaginatedFilterHandler) {
         this.createHandler = createHandler;
         this.updateHandler = updateHandler;
         this.deleteHandler = deleteHandler;
         this.findAllHandler = findAllHandler;
         this.findAllPaginatedHandler = findAllPaginatedHandler;
+        this.findAllPaginatedFilterHandler = findAllPaginatedFilterHandler;
     }
 
     @PostMapping
@@ -77,6 +81,23 @@ public class StudentController {
 
         FindAllPaginatedQuery query = new FindAllPaginatedQuery(pageable);
         PaginatedResponse response = findAllPaginatedHandler.handle(query);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<PaginatedResponse> findAllPaginatedFilter(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "") String filter,
+            @RequestParam(defaultValue = "") String name,
+            @RequestParam(defaultValue = "") String email){
+        Sort sort = Sort.by("name").ascending();
+        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+
+        FindAllPaginatedFilterQuery query = new FindAllPaginatedFilterQuery(
+                pageable, filter, name, email);
+        PaginatedResponse response = findAllPaginatedFilterHandler.handle(query);
 
         return ResponseEntity.ok(response);
     }

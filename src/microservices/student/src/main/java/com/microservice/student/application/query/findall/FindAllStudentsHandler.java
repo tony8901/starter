@@ -20,7 +20,7 @@ public class FindAllStudentsHandler {
     public FindAllStudentsResponse handle() {
         List<StudentQueryResponse> responseList = new ArrayList<>();
         try{
-            List<Student> studentList = service.findAll();
+            List<Student> studentList = service.findAllPaginated();
             studentList.forEach(x -> responseList.add(new StudentQueryResponse(x)));
         } catch (Exception e){
             throw new RuntimeException("Something is wrong!: "+e.getMessage());
