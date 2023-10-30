@@ -31,7 +31,7 @@ public class CreateStudentHandler
 
             Student student = new Student(
                     UUID.randomUUID(), command.getName(), command.getEmail(),
-                    command.getCourseId(), StudentState.ACTIVE);
+                    command.getCourses(), StudentState.ACTIVE);
             studentService.create(student);
             response.setError(false);
             response.setId(student.id().toString());
