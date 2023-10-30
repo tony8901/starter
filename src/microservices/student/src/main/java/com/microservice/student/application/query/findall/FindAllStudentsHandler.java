@@ -21,8 +21,7 @@ public class FindAllStudentsHandler {
         List<StudentQueryResponse> responseList = new ArrayList<>();
         try{
             List<Student> studentList = service.findAll();
-            studentList.forEach(x -> responseList.add(new StudentQueryResponse(
-                    x.id(), x.name(), x.email(), x.courses())));
+            studentList.forEach(x -> responseList.add(new StudentQueryResponse(x)));
         } catch (Exception e){
             throw new RuntimeException("Something is wrong!: "+e.getMessage());
         }

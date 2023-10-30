@@ -1,8 +1,12 @@
 package com.microservice.student.infrastructure.adapter.query;
 
+import com.microservice.student.application.http.StudentQueryResponse;
 import com.microservice.student.domain.Student;
 import com.microservice.student.domain.repository.query.IStudentQueryRepository;
 import com.microservice.student.infrastructure.repository.hibernate.StudentDto;
+import com.microservice.utils.core.PaginatedResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -42,5 +46,16 @@ public class PostgresDBStudentQueryRepository implements IStudentQueryRepository
     @Override
     public boolean existByEmail(String email) {
         return repository.existsByEmail(email);
+    }
+
+    @Override
+    public PaginatedResponse findAll(Pageable pageable) {
+        Page<StudentDto> dtoPage = repository.findAll(pageable);
+        List<StudentQueryResponse> responseList = new ArrayList<>();
+        dtoPage.forEach(x -> responseList.add(new StudentQueryResponse(x.toAggregate())));
+
+        return new PaginatedResponse(
+                "ok", responseList, dtoPage.getTotalPages(),dtoPage.getNumberOfElements(),
+                dtoPage.getTotalElements(), dtoPage.getSize(), dtoPage.getNumber());
     }
 }

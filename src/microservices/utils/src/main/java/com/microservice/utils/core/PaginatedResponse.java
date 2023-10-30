@@ -12,13 +12,13 @@ import java.util.List;
 public class PaginatedResponse implements IRequestResponse{
     private String timestamp;
 
-    private int status = 200;
+    private final int status = 200;
 
     private String message;
 
     private String errors;
 
-    private List<?> data = new ArrayList<>();
+    private List<?> data;
 
     private Integer totalPages;
 
@@ -43,6 +43,13 @@ public class PaginatedResponse implements IRequestResponse{
         this.pageElements = pageElements;
         this.pageLimit = pageLimit;
         this.pageNumber = pageNumber;
+    }
+
+    public PaginatedResponse(String message, String errors){
+        this.timestamp = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss '['z']'")
+                .format(ZonedDateTime.now(ZoneId.of("UTC")));
+        this.message = message;
+        this.errors = errors;
     }
 
 }

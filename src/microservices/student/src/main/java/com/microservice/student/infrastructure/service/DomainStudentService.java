@@ -4,6 +4,8 @@ import com.microservice.student.domain.Student;
 import com.microservice.student.domain.repository.command.IStudentCommandRepository;
 import com.microservice.student.domain.repository.query.IStudentQueryRepository;
 import com.microservice.student.domain.service.IStudentService;
+import com.microservice.utils.core.PaginatedResponse;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,5 +52,10 @@ public class DomainStudentService implements IStudentService {
     @Override
     public boolean existByEmail(String email) {
         return queryRepository.existByEmail(email);
+    }
+
+    @Override
+    public PaginatedResponse findAll(Pageable pageable) {
+        return queryRepository.findAll(pageable);
     }
 }

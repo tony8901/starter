@@ -11,6 +11,11 @@ import com.microservice.student.application.command.update.UpdateStudentRequest;
 import com.microservice.student.application.http.StudentCommandResponse;
 import com.microservice.student.application.query.findall.FindAllStudentsHandler;
 import com.microservice.student.application.query.findall.FindAllStudentsResponse;
+import com.microservice.student.application.query.findallpaginated.FindAllPaginatedQuery;
+import com.microservice.student.application.query.findallpaginated.FindAllPaginatedHandler;
+import com.microservice.utils.core.PaginatedResponse;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,11 +30,14 @@ public class StudentController {
     private final DeleteStudentHandler deleteHandler;
     private final FindAllStudentsHandler findAllHandler;
 
-    public StudentController(CreateStudentHandler createHandler, UpdateStudentHandler updateHandler, DeleteStudentHandler deleteHandler, FindAllStudentsHandler findAllHandler) {
+    private final FindAllPaginatedHandler findAllPaginatedHandler;
+
+    public StudentController(CreateStudentHandler createHandler, UpdateStudentHandler updateHandler, DeleteStudentHandler deleteHandler, FindAllStudentsHandler findAllHandler, FindAllPaginatedHandler findAllPaginatedHandler) {
         this.createHandler = createHandler;
         this.updateHandler = updateHandler;
         this.deleteHandler = deleteHandler;
         this.findAllHandler = findAllHandler;
+        this.findAllPaginatedHandler = findAllPaginatedHandler;
     }
 
     @PostMapping
@@ -59,5 +67,17 @@ public class StudentController {
     @GetMapping("/all")
     public ResponseEntity<FindAllStudentsResponse> findAll(){
         return ResponseEntity.ok(findAllHandler.handle());
+    }
+
+    @GetMapping
+    public ResponseEntity<PaginatedResponse> finAllPaginated(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize){
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+
+        FindAllPaginatedQuery query = new FindAllPaginatedQuery(pageable);
+        PaginatedResponse response = findAllPaginatedHandler.handle(query);
+
+        return ResponseEntity.ok(response);
     }
 }
