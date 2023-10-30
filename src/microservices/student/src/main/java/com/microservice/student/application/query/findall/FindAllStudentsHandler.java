@@ -3,7 +3,6 @@ package com.microservice.student.application.query.findall;
 import com.microservice.student.application.http.StudentQueryResponse;
 import com.microservice.student.domain.Student;
 import com.microservice.student.domain.service.IStudentService;
-import com.microservice.utils.core.IRequestHandler;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
