@@ -9,6 +9,8 @@ import com.microservice.student.application.command.update.UpdateStudentCommand;
 import com.microservice.student.application.command.update.UpdateStudentHandler;
 import com.microservice.student.application.command.update.UpdateStudentRequest;
 import com.microservice.student.application.http.StudentCommandResponse;
+import com.microservice.student.application.query.findall.FindAllStudentsHandler;
+import com.microservice.student.application.query.findall.FindAllStudentsResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,13 +22,14 @@ public class StudentController {
 
     private final CreateStudentHandler createHandler;
     private final UpdateStudentHandler updateHandler;
-
     private final DeleteStudentHandler deleteHandler;
+    private final FindAllStudentsHandler findAllHandler;
 
-    public StudentController(CreateStudentHandler createHandler, UpdateStudentHandler updateHandler, DeleteStudentHandler deleteHandler) {
+    public StudentController(CreateStudentHandler createHandler, UpdateStudentHandler updateHandler, DeleteStudentHandler deleteHandler, FindAllStudentsHandler findAllHandler) {
         this.createHandler = createHandler;
         this.updateHandler = updateHandler;
         this.deleteHandler = deleteHandler;
+        this.findAllHandler = findAllHandler;
     }
 
     @PostMapping
@@ -51,5 +54,10 @@ public class StudentController {
         StudentCommandResponse response = deleteHandler.handle(command);
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<FindAllStudentsResponse> findAll(){
+        return ResponseEntity.ok(findAllHandler.handle());
     }
 }

@@ -2,9 +2,12 @@ package com.microservice.student.application.http;
 
 import com.microservice.utils.core.IRequestResponse;
 
+import java.util.List;
+import java.util.UUID;
+
 public record StudentQueryResponse(
-        long id,
+        UUID id,
         String name,
         String email,
-        long courseId) implements IRequestResponse {
+        List<UUID> courses) implements IRequestResponse {
 }
