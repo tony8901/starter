@@ -21,7 +21,7 @@
         <module>src/microservices/utils</module>
     </modules>
 
-    <groupId>org.mycompany.app</groupId>
+    <groupId>org.starter.app</groupId>
     <artifactId>starter</artifactId>
     <version>1.0-SNAPSHOT</version>
 
