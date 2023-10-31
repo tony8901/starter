@@ -17,9 +17,13 @@ public interface IStudentService {
 
     Student findById(UUID id);
 
-    List<Student> findAll();
+    List<Student> findAllPaginated();
 
     boolean existByEmail(String email);
 
-    PaginatedResponse findAll(Pageable pageable);
+    PaginatedResponse findAllPaginated(Pageable pageable);
+
+    PaginatedResponse findAllPaginatedFilter(Pageable pageable, String filter, String name, String email);
+
+    List<Student> findAllByCourseId(UUID courseId);
 }

@@ -45,8 +45,8 @@ public class DomainStudentService implements IStudentService {
     }
 
     @Override
-    public List<Student> findAll() {
-        return queryRepository.findAll();
+    public List<Student> findAllPaginated() {
+        return queryRepository.findAllPaginated();
     }
 
     @Override
@@ -55,7 +55,17 @@ public class DomainStudentService implements IStudentService {
     }
 
     @Override
-    public PaginatedResponse findAll(Pageable pageable) {
-        return queryRepository.findAll(pageable);
+    public PaginatedResponse findAllPaginated(Pageable pageable) {
+        return queryRepository.findAllPaginated(pageable);
+    }
+
+    @Override
+    public PaginatedResponse findAllPaginatedFilter(Pageable pageable, String filter, String name, String email) {
+        return queryRepository.findAllPaginatedFilter(pageable, filter, name, email);
+    }
+
+    @Override
+    public List<Student> findAllByCourseId(UUID courseId) {
+        return queryRepository.findAllByCourseId(courseId);
     }
 }

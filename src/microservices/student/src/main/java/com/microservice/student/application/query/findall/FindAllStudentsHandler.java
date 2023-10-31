@@ -1,5 +1,6 @@
 package com.microservice.student.application.query.findall;
 
+import com.microservice.student.application.http.AllStudentsResponse;
 import com.microservice.student.application.http.StudentQueryResponse;
 import com.microservice.student.domain.Student;
 import com.microservice.student.domain.service.IStudentService;
@@ -17,14 +18,14 @@ public class FindAllStudentsHandler {
         this.service = service;
     }
 
-    public FindAllStudentsResponse handle() {
+    public AllStudentsResponse handle() {
         List<StudentQueryResponse> responseList = new ArrayList<>();
         try{
-            List<Student> studentList = service.findAll();
+            List<Student> studentList = service.findAllPaginated();
             studentList.forEach(x -> responseList.add(new StudentQueryResponse(x)));
         } catch (Exception e){
             throw new RuntimeException("Something is wrong!: "+e.getMessage());
         }
-        return new FindAllStudentsResponse(responseList);
+        return new AllStudentsResponse(responseList);
     }
 }

@@ -2,13 +2,10 @@ package com.microservice.student.infrastructure.repository.hibernate;
 
 import com.microservice.student.domain.Student;
 import com.microservice.student.domain.StudentState;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -25,8 +22,9 @@ public class StudentDto {
     @Column(nullable = false)
     private String email;
 
-    @Column(name = "course_id")
-    private List<UUID> courses;
+    @ElementCollection
+    @Column(name = "courses")
+    private Set<UUID> courses;
 
     @Column(nullable = false)
     private String state;

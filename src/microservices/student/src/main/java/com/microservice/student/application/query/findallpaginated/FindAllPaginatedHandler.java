@@ -18,7 +18,7 @@ public class FindAllPaginatedHandler
     @Override
     public PaginatedResponse handle(FindAllPaginatedQuery request) {
         try{
-            return service.findAll(request.getPageable());
+            return service.findAllPaginated(request.getPageable());
         } catch (Exception e){
             return new PaginatedResponse("Something is wrong!", e.getLocalizedMessage());
         }
