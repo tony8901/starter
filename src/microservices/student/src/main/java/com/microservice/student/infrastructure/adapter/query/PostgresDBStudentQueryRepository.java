@@ -90,4 +90,12 @@ public class PostgresDBStudentQueryRepository implements IStudentQueryRepository
                 "ok", responseList, dtoPage.getTotalPages(),dtoPage.getNumberOfElements(),
                 dtoPage.getTotalElements(), dtoPage.getSize(), dtoPage.getNumber());
     }
+
+    @Override
+    public List<Student> findAllByCourseId(UUID courseId) {
+        List<StudentDto> dtoList = repository.findAll(SpecStudent.getCourseIsMember(courseId));
+        List<Student> studentList = new ArrayList<>();
+        dtoList.forEach(x -> studentList.add(x.toAggregate()));
+        return studentList;
+    }
 }

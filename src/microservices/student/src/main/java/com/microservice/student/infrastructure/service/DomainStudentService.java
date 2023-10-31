@@ -63,4 +63,9 @@ public class DomainStudentService implements IStudentService {
     public PaginatedResponse findAllPaginatedFilter(Pageable pageable, String filter, String name, String email) {
         return queryRepository.findAllPaginatedFilter(pageable, filter, name, email);
     }
+
+    @Override
+    public List<Student> findAllByCourseId(UUID courseId) {
+        return queryRepository.findAllByCourseId(courseId);
+    }
 }

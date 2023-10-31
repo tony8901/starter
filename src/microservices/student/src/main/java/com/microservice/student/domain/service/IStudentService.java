@@ -24,4 +24,6 @@ public interface IStudentService {
     PaginatedResponse findAllPaginated(Pageable pageable);
 
     PaginatedResponse findAllPaginatedFilter(Pageable pageable, String filter, String name, String email);
+
+    List<Student> findAllByCourseId(UUID courseId);
 }
