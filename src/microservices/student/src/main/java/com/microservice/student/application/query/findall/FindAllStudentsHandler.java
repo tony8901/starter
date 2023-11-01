@@ -24,7 +24,7 @@ public class FindAllStudentsHandler {
             List<Student> studentList = service.findAllPaginated();
             studentList.forEach(x -> responseList.add(new StudentQueryResponse(x)));
         } catch (Exception e){
-            throw new RuntimeException("Something is wrong!: "+e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
         return new AllStudentsResponse(responseList);
     }
