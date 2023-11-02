@@ -1,6 +1,6 @@
 package com.microservice.student.application.command.create;
 
-import com.microservice.utils.core.IRequest;
+import com.microservice.utils.core.http.IRequest;
 import lombok.Getter;
 
 import java.util.Set;

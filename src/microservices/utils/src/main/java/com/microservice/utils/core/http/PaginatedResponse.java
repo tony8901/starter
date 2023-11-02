@@ -1,4 +1,4 @@
-package com.microservice.utils.core;
+package com.microservice.utils.core.http;
 
 import lombok.Getter;
 
@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Getter
-public class PaginatedResponse implements IRequestResponse{
+public class PaginatedResponse implements IResponse {
     private String timestamp;
 
     private final int status = 200;

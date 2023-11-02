@@ -19,11 +19,15 @@ public interface IStudentReadDataJpaRepository extends JpaRepository<StudentDto,
     boolean existsByEmail(String email);
 
     @Override
+    @NonNull
     @Query(value = "FROM StudentDto t WHERE t.id=?1 AND t.state='ACTIVE'")
     Optional<StudentDto> findById(@NonNull UUID uuid);
 
     @Override
+    @NonNull
     Page<StudentDto> findAll(@NonNull Pageable pageable);
 
+    @Override
+    @NonNull
     Page<StudentDto> findAll(@NonNull Specification spec, @NonNull Pageable pageable);
 }

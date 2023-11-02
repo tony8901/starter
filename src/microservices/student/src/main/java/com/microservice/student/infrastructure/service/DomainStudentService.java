@@ -4,7 +4,7 @@ import com.microservice.student.domain.Student;
 import com.microservice.student.domain.repository.command.IStudentCommandRepository;
 import com.microservice.student.domain.repository.query.IStudentQueryRepository;
 import com.microservice.student.domain.service.IStudentService;
-import com.microservice.utils.core.PaginatedResponse;
+import com.microservice.utils.core.http.PaginatedResponse;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -45,8 +45,8 @@ public class DomainStudentService implements IStudentService {
     }
 
     @Override
-    public List<Student> findAllPaginated() {
-        return queryRepository.findAllPaginated();
+    public List<Student> findAll() {
+        return queryRepository.findAll();
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.microservice.student.domain.Student;
 import com.microservice.student.domain.repository.query.IStudentQueryRepository;
 import com.microservice.student.infrastructure.repository.hibernate.StudentDto;
 import com.microservice.student.infrastructure.repository.jpa.SpecStudent;
-import com.microservice.utils.core.PaginatedResponse;
+import com.microservice.utils.core.http.PaginatedResponse;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,7 +38,7 @@ public class PostgresDBStudentQueryRepository implements IStudentQueryRepository
     }
 
     @Override
-    public List<Student> findAllPaginated() {
+    public List<Student> findAll() {
         List<StudentDto> dtoList = repository.findAll();
         List<Student> studentList = new ArrayList<>();
         dtoList.forEach(x -> studentList.add(x.toAggregate()));

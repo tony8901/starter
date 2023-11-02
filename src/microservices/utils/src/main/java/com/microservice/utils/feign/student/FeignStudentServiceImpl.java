@@ -1,13 +1,14 @@
 package com.microservice.utils.feign.student;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.microservice.utils.feign.student.client.IFeignStudentClient;
+import com.microservice.utils.feign.student.http.FeignStudentResponse;
 import com.microservice.utils.feign.student.service.IFeignStudentService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class FeignStudentServiceImpl implements IFeignStudentService {
@@ -22,12 +23,12 @@ public class FeignStudentServiceImpl implements IFeignStudentService {
     }
 
     @Override
-    public ResponseEntity<String> getStudentsByCourseId(UUID courseId) {
+    public List<FeignStudentResponse> getStudentsByCourseId(UUID courseId) {
         try{
-//            JsonNode jsonResponse = jsonReader.readTree(studentClient.getStudentsByCourseId(courseId).getBody());
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            FeignStudentByCourseIdResponse response =objectMapper.readValue(jsonResponse.get("data").toPrettyString(), FeignStudentByCourseIdResponse.class);
-            return studentClient.getStudentsByCourseId(courseId);
+            JsonNode jsonResponse = jsonReader.readTree(studentClient.getStudentsByCourseId(courseId).getBody());
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<FeignStudentResponse> studentResponses = Arrays.asList(objectMapper.readValue(jsonResponse.get("data").toString(), FeignStudentResponse[].class));
+            return studentResponses;
         } catch (Exception e){
             throw new RuntimeException(e.getMessage());
         }

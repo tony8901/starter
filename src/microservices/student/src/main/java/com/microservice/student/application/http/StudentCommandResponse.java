@@ -1,12 +1,12 @@
 package com.microservice.student.application.http;
 
-import com.microservice.utils.core.IRequestResponse;
+import com.microservice.utils.core.http.IResponse;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class StudentCommandResponse implements IRequestResponse {
+public class StudentCommandResponse implements IResponse {
 
     private String message;
     private String id;

@@ -21,7 +21,7 @@ public class FindAllStudentsHandler {
     public AllStudentsResponse handle() {
         List<StudentQueryResponse> responseList = new ArrayList<>();
         try{
-            List<Student> studentList = service.findAllPaginated();
+            List<Student> studentList = service.findAll();
             studentList.forEach(x -> responseList.add(new StudentQueryResponse(x)));
         } catch (Exception e){
             throw new RuntimeException(e.getMessage());

@@ -17,7 +17,7 @@ import com.microservice.student.application.query.findallpaginatedfilter.FindAll
 import com.microservice.student.application.query.findallpaginatedfilter.FindAllPaginatedFilterQuery;
 import com.microservice.student.application.query.getbycourseid.FindByCourseIdHandler;
 import com.microservice.student.application.query.getbycourseid.FindByCourseIdQuery;
-import com.microservice.utils.core.PaginatedResponse;
+import com.microservice.utils.core.http.PaginatedResponse;
 import com.microservice.utils.feign.student.service.IFeignStudentService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -118,7 +118,7 @@ public class StudentController {
     }
 
     @GetMapping("/prueba/{courseId}")
-    public ResponseEntity<String> prueba(@PathVariable UUID courseId){
-        return studentService.getStudentsByCourseId(courseId);
+    public ResponseEntity<?> prueba(@PathVariable UUID courseId){
+        return ResponseEntity.ok(studentService.getStudentsByCourseId(courseId));
     }
 }

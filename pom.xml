@@ -19,6 +19,7 @@
         <module>src/configservices/gateway</module>
         <module>src/microservices/student</module>
         <module>src/microservices/utils</module>
+        <module>src/microservices/course</module>
     </modules>
 
     <groupId>org.starter.app</groupId>
