@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/students/api")
+@RequestMapping("/students/api/students")
 public class StudentController {
 
     private final CreateStudentHandler createHandler;
