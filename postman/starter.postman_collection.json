@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "62778ed7-08e5-4b44-b964-299bb89e825a",
+		"name": "starter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24750926"
+	},
+	"item": [
+		{
+			"name": "students",
+			"item": [
+				{
+					"name": "student_create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Student2\",\r\n    \"email\":\"email1@mail\",\r\n    \"courses\":[\"c27c629e-739e-486c-8df0-2e0b1edcb51f\", \"03c117b7-3858-4b30-aabc-d1fd18e2a83d\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/students/api/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"students",
+								"api",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "student_update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"f9cd92d3-7ab3-47e3-b9c1-d06e10c49e5c\",\r\n    \"name\":\"Student2\",\r\n    \"courses\":[]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/students/api/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"students",
+								"api",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "student_delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/students/api/students/f9cd92d3-7ab3-47e3-b9c1-d06e10c49e5c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"students",
+								"api",
+								"students",
+								"f9cd92d3-7ab3-47e3-b9c1-d06e10c49e5c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "student_all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/students/api/students/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"students",
+								"api",
+								"students",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "student_all_filter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/students/api/students/filter?name=student2&email=email2@mail&filter=stud",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"students",
+								"api",
+								"students",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "student2"
+								},
+								{
+									"key": "email",
+									"value": "email2@mail"
+								},
+								{
+									"key": "filter",
+									"value": "stud"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "course",
+			"item": [
+				{
+					"name": "courses_all_paginated",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/courses/api/courses?description=course&name=course",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"api",
+								"courses"
+							],
+							"query": [
+								{
+									"key": "description",
+									"value": "course"
+								},
+								{
+									"key": "name",
+									"value": "course"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses_all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/courses/api/courses/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"api",
+								"courses",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses_create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Course3\",\r\n    \"description\":\"Description of Course3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/courses/api/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"api",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "course_update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"c27c629e-739e-486c-8df0-2e0b1edcb51f\",\r\n    \"name\":\"Course1\",\r\n    \"description\":\"Description of Course1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/courses/api/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"api",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "course_delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/courses/api/courses/c27c629e-739e-486c-8df0-2e0b1edcb51f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"api",
+								"courses",
+								"c27c629e-739e-486c-8df0-2e0b1edcb51f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "course_student",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/courses/api/courses/students/c27c629e-739e-486c-8df0-2e0b1edcb51f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"api",
+								"courses",
+								"students",
+								"c27c629e-739e-486c-8df0-2e0b1edcb51f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
