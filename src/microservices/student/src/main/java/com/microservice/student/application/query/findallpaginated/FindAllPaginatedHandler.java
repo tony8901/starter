@@ -1,8 +1,8 @@
 package com.microservice.student.application.query.findallpaginated;
 
 import com.microservice.student.domain.service.IStudentService;
-import com.microservice.utils.core.IRequestHandler;
-import com.microservice.utils.core.PaginatedResponse;
+import com.microservice.utils.core.http.IRequestHandler;
+import com.microservice.utils.core.http.PaginatedResponse;
 import org.springframework.stereotype.Component;
 
 @Component

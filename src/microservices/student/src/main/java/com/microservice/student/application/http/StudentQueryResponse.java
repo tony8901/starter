@@ -1,14 +1,14 @@
 package com.microservice.student.application.http;
 
 import com.microservice.student.domain.Student;
-import com.microservice.utils.core.IRequestResponse;
+import com.microservice.utils.core.http.IResponse;
 import lombok.Getter;
 
 import java.util.Set;
 import java.util.UUID;
 
 @Getter
-public class StudentQueryResponse implements IRequestResponse {
+public class StudentQueryResponse implements IResponse {
     private final UUID id;
     private final String name;
     private final String email;

@@ -2,10 +2,10 @@ package com.microservice.student;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@EnableFeignClients(basePackages = "com.microservice.utils.feign")
+@ComponentScan(basePackages = {"com.microservice.student","com.microservice.utils"})
 public class StudentApplication {
 
 	public static void main(String[] args) {

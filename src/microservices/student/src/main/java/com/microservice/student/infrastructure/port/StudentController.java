@@ -17,7 +17,8 @@ import com.microservice.student.application.query.findallpaginatedfilter.FindAll
 import com.microservice.student.application.query.findallpaginatedfilter.FindAllPaginatedFilterQuery;
 import com.microservice.student.application.query.getbycourseid.FindByCourseIdHandler;
 import com.microservice.student.application.query.getbycourseid.FindByCourseIdQuery;
-import com.microservice.utils.core.PaginatedResponse;
+import com.microservice.utils.core.http.PaginatedResponse;
+import com.microservice.utils.feign.student.service.IFeignStudentService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/students")
+@RequestMapping("/students/api")
 public class StudentController {
 
     private final CreateStudentHandler createHandler;
@@ -37,8 +38,9 @@ public class StudentController {
     private final FindAllPaginatedHandler findAllPaginatedHandler;
     private final FindAllPaginatedFilterHandler findAllPaginatedFilterHandler;
     private final FindByCourseIdHandler courseIdHandler;
+    private final IFeignStudentService studentService;
 
-    public StudentController(CreateStudentHandler createHandler, UpdateStudentHandler updateHandler, DeleteStudentHandler deleteHandler, FindAllStudentsHandler findAllHandler, FindAllPaginatedHandler findAllPaginatedHandler, FindAllPaginatedFilterHandler findAllPaginatedFilterHandler, FindByCourseIdHandler courseIdHandler) {
+    public StudentController(CreateStudentHandler createHandler, UpdateStudentHandler updateHandler, DeleteStudentHandler deleteHandler, FindAllStudentsHandler findAllHandler, FindAllPaginatedHandler findAllPaginatedHandler, FindAllPaginatedFilterHandler findAllPaginatedFilterHandler, FindByCourseIdHandler courseIdHandler, IFeignStudentService studentService) {
         this.createHandler = createHandler;
         this.updateHandler = updateHandler;
         this.deleteHandler = deleteHandler;
@@ -46,6 +48,7 @@ public class StudentController {
         this.findAllPaginatedHandler = findAllPaginatedHandler;
         this.findAllPaginatedFilterHandler = findAllPaginatedFilterHandler;
         this.courseIdHandler = courseIdHandler;
+        this.studentService = studentService;
     }
 
     @PostMapping
@@ -112,5 +115,10 @@ public class StudentController {
         AllStudentsResponse response = courseIdHandler.handle(query);
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/prueba/{courseId}")
+    public ResponseEntity<?> prueba(@PathVariable UUID courseId){
+        return ResponseEntity.ok(studentService.getStudentsByCourseId(courseId));
     }
 }

@@ -4,7 +4,7 @@ import com.microservice.student.application.http.StudentCommandResponse;
 import com.microservice.student.domain.Student;
 import com.microservice.student.domain.StudentState;
 import com.microservice.student.domain.service.IStudentService;
-import com.microservice.utils.core.IRequestHandler;
+import com.microservice.utils.core.http.IRequestHandler;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

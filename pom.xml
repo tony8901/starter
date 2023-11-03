@@ -19,6 +19,7 @@
         <module>src/configservices/gateway</module>
         <module>src/microservices/student</module>
         <module>src/microservices/utils</module>
+        <module>src/microservices/course</module>
     </modules>
 
     <groupId>org.starter.app</groupId>
@@ -26,11 +27,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
     </dependencies>
 
     <properties>
